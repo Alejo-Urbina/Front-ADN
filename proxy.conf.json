@@ -1,0 +1,7 @@
+{
+  "/discoteca": {
+    "target": "http://localhost:8082",
+    "logLevel": "debug"
+  }
+
+}

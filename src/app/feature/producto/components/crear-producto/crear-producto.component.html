@@ -1,0 +1,43 @@
+<form [formGroup]="productoForm" (ngSubmit)="cerar()">
+  <h1>Ingresar Cliente</h1>
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Nombre:</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="nombreCliente" name="nombreCliente" placeholder="Nombre Cliente" class="form-control"
+        formControlName="nombre">
+    </div><br>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Cedula:</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="cedulaCliente" name="cedula" placeholder="Cedula cliente"
+        class="form-control" formControlName="cedula">
+    </div><br>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Genero: "H O M"</label>
+    </div>
+    <div class="col-sm-4">
+      <select type="text" id="generoCliente" name="genero" placeholder="Genero cliente"
+      class="form-control" formControlName="genero">
+        <option>H</option>
+        <option>M</option>
+      </select>
+    </div><br>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Fecha nacimiento: "AAAA-MM-DD"</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha nacimiento"
+        class="form-control" formControlName="fechaNacimiento">
+    </div><br>
+    <button type="submit" >Crear</button>
+  </div>  
+</form>

@@ -1,0 +1,16 @@
+nav{
+    background-color: blue($color: #000000);
+    font-size: 130%;
+    display: block;
+    padding: 10px;
+    font-weight: bold;
+}
+
+nav :hover{
+    background-color: cornflowerblue;
+}
+
+a{
+    text-decoration:none;
+    padding: 20px;
+}

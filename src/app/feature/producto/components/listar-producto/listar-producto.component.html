@@ -1,0 +1,22 @@
+<div id="productos">
+  <ul class="productos">
+    <table>
+      <thead>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Cedula</th>
+        <th>Genero</th>
+        <th>Precio Entrada</th>
+        <th>Fecha Nacimiento</th>
+      </thead>
+      <tr *ngFor="let item of listaProductos | async">
+        <td>{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.cedula}}</td>
+        <td>{{item.genero}}</td>
+        <td>{{item.precioEntrada}}</td>
+        <td>{{item.fechaNacimiento}}</td>        
+      </tr>
+    </table>
+  </ul>
+</div>

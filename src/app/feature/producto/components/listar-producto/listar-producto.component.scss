@@ -1,0 +1,21 @@
+table{
+    text-align: left;
+    width: 80%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border: solid 1px black;
+    padding: 0;
+    padding: 20px;
+}
+
+thead{
+    background-color: cornflowerblue;
+    border-bottom: solid 5 px black;
+}
+
+tr:hover{
+    background-color: rgb(97, 174, 247);
+    color: white;
+}
