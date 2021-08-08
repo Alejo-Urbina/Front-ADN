@@ -1,5 +1,4 @@
 
-
 export class Cliente {
     id : any;
     nombre: string;
@@ -11,6 +10,6 @@ export class Cliente {
         this.nombre = nombre;
         this.cedula = cedula;
         this.genero = genero;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = new Date(fechaNacimiento.getFullYear(),fechaNacimiento.getMonth(),fechaNacimiento.getDay());
     }
 }

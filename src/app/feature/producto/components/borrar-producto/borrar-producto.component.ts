@@ -30,15 +30,16 @@ export class BorrarProductoComponent implements OnInit {
   salida() {   
       this.productoService.eliminar(this.productForm.value.id).subscribe(
         data => this.showSucces(data,'Exitoso'),
-        error => this.showError('No se pudo',error.ok));     
+        error => this.showError(error.error.mensaje)                 
+        );                  
   }
 
   showSucces(texto,titulo){
     this.toast.success(texto,titulo);
   }
 
-  showError(texto,titulo){
-    this.toast.error(texto,titulo);
+  showError(texto){
+    this.toast.error(texto);
   }
 
   private construirFormularioProducto() {

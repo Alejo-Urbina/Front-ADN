@@ -2,9 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HTTP_ERRORES_CODIGO } from './http-codigo-error';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ManejadorError implements ErrorHandler {
+  private toast: ToastrService
+
   constructor() {}
 
   handleError(error: string | Error): void {
@@ -17,7 +20,7 @@ export class ManejadorError implements ErrorHandler {
       if (!navigator.onLine) {
         return HTTP_ERRORES_CODIGO.NO_HAY_INTERNET;
       }
-      if (error.hasOwnProperty('status') && !error.error.hasOwnProperty('mensaje')) {
+      if (error.hasOwnProperty('status') && !error.error.hasOwnProperty('mensaje')) {        
         return this.obtenerErrorHttpCode(error.status);
       }
     }
@@ -31,8 +34,16 @@ export class ManejadorError implements ErrorHandler {
       mensaje,
     };
     if (!environment.production) {
-      window.console.error('Error inesperado:\n', respuesta);
+      window.console.error('Error inesperado:\n', respuesta.mensaje);        
     }
+  }
+
+  public showSucces(titulo){
+    this.toast.success(titulo);
+  }
+
+  public showError(texto){
+    this.toast.error(texto);
   }
 
   public obtenerErrorHttpCode(httpCode: number): string {

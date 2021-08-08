@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
   
+  
   constructor(protected productoService: ProductoService, private toast: ToastrService) { }
 
   ngOnInit() {
@@ -24,16 +25,17 @@ export class CrearProductoComponent implements OnInit {
 
   cerar() {    
     this.productoService.guardarCliente(this.productoForm.value).subscribe(
-      data => this.showSucces(data.valueOf,'Exitoso'),
-      error => this.showError('No se pudo',error.ok));  
+      data => {this.showSucces('Exitoso'); data.valueOf},
+      error => this.showError(error.error.mensaje)               
+      );   
   }
 
-  showSucces(texto,titulo){
-    this.toast.success(texto,titulo);
+  showSucces(titulo){
+    this.toast.success(titulo);
   }
 
-  showError(texto,titulo){
-    this.toast.error(texto,titulo);
+  showError(texto){
+    this.toast.error(texto);
   }
 
   private construirFormularioProducto() {
