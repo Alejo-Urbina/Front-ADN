@@ -4,10 +4,13 @@ import { environment } from 'src/environments/environment';
 import { Cliente } from '../model/cliente';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductoService {
 
-  constructor(protected http: HttpService) {}
+  constructor(protected http: HttpService) {
+  }
 
   public consultar() {
     return this.http.doGet<Cliente[]>(`${environment.endpoint}/clientes`, this.http.optsName('consultar productos'));

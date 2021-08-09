@@ -1,29 +1,49 @@
 import { by, element } from 'protractor';
 
 export class ProductoPage {
-    private linkCrearProducto = element(by.id('linkCrearProducto'));
-    private linkListarProductos = element(by.id('linkListarProducto'));
-    private inputIdProducto = element(by.id('idProducto'));
-    private inputDescripcionProducto = element(by.id('descripcionProducto'));
-    private listaProductos = element.all(by.css('ul.productos li'));
+    private linkCrearCliente = element(by.id('linkCrearCliente'));
+    private linkListarClientes = element(by.id('linkListarCliente'));
+    private linkElimibarClientes = element(by.id('linkEliminarCliente'));
+    private inputNombreCliente = element(by.id('nombreCliente'));
+    private inputCedulaCliente = element(by.id('cedulaCliente'));
+    private inputGeneroCliente = element(by.id('generoCliente'));
+    private inputFechaNacimientoCliente = element(by.id('fechaNaciemientoCliente'));
+    private listaClientes = element.all(by.css('ul.productos li'));
+    private mensajeToast = element(by.css('.toast-message'));
 
-    async clickBotonCrearProductos() {
-        await this.linkCrearProducto.click();
+    async clickBotonCrearClientes() {
+        await this.linkCrearCliente.click();
     }
 
-    async clickBotonListarProductos() {
-        await this.linkListarProductos.click();
+    async clickBotonListarClientes() {
+        await this.linkListarClientes.click();
     }
 
-    async ingresarId(idProducto) {
-        await this.inputIdProducto.sendKeys(idProducto);
+    async clickBotonEliminarClientes() {
+        await this.linkElimibarClientes.click();
     }
 
-    async ingresarDescripcion(descripcionProducto) {
-        await this.inputDescripcionProducto.sendKeys(descripcionProducto);
+    async ingresarNombre(nombreCliente) {
+        await this.inputNombreCliente.sendKeys(nombreCliente);
+    }
+
+    async ingresarCedula(cedulaCliente) {
+        await this.inputCedulaCliente.sendKeys(cedulaCliente);
+    }
+
+    async ingresarGenero(generoCliente) {
+        await this.inputGeneroCliente.sendKeys(generoCliente);
+    }
+
+    async ingresarFechaNacimiento(fechaNacimientoProducto) {
+        await this.inputFechaNacimientoCliente.sendKeys(fechaNacimientoProducto);
     }
 
     async contarProductos() {
-        return this.listaProductos.count();
+        return this.listaClientes.count();
+    }
+
+    async obtenerMensaje() {
+        return this.mensajeToast;
     }
 }

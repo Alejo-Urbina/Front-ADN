@@ -11,6 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ProductoService } from '@producto/shared/service/producto.service';
+import { HttpService } from '@core/services/http.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
   ],
-  providers: [CookieService],
+  providers: [CookieService, ProductoService, HttpService],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

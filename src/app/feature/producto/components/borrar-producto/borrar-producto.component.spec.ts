@@ -5,6 +5,17 @@ import {
 import { BorrarProductoComponent } from './borrar-producto.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductoService } from '@producto/shared/service/producto.service';
+import { HttpService } from '@core/services/http.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ProductoModule } from '@producto/producto.module';
+import { CoreModule } from '@core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BorrarProductoComponent', () => {
   let component: BorrarProductoComponent;
@@ -15,9 +26,19 @@ describe('BorrarProductoComponent', () => {
       declarations: [ BorrarProductoComponent ],
       imports: [
         CommonModule,
-        HttpClientModule,
-        RouterTestingModule
+                HttpClientTestingModule,
+                HttpClientModule,
+                RouterTestingModule,
+                ReactiveFormsModule,
+                FormsModule,
+                BrowserModule,
+                AppRoutingModule,
+                ProductoModule,
+                CoreModule,
+                BrowserAnimationsModule, // required animations module
+                ToastrModule.forRoot() // ToastrModule added
       ],
+      providers: [ProductoService, HttpService, ToastrService, CookieService],
     })
     .compileComponents();
   }));

@@ -14,25 +14,84 @@ describe('workspace-project Producto', () => {
         producto = new ProductoPage();
     });
 
-    it('Deberia crear producto', () => {
-        const ID_PRODUCTO = '001';
-        const DESCRIPCION_PRODUCTO = 'Producto de pruebas';
+    it('Deberia ingresar cliente', () => {
+        const NOMBRE_CLIENTE = 'Ramiro';
+        const CEDULA_CLIENTE = '1090565324';
+        const GENERO_CLIENTE = 'H';
+        const FECHA_NACIMIENTO_CLIENTE = '1990-05-02';
 
         page.navigateTo();
         navBar.clickBotonProductos();
-        producto.clickBotonCrearProductos();
-        producto.ingresarId(ID_PRODUCTO);
-        producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
+        producto.clickBotonCrearClientes();
+        producto.ingresarNombre(NOMBRE_CLIENTE);
+        producto.ingresarCedula(CEDULA_CLIENTE);
+        producto.ingresarGenero(GENERO_CLIENTE);
+        producto.ingresarFechaNacimiento(FECHA_NACIMIENTO_CLIENTE);
 
-        // Adicionamos las validaciones despues de la creación
-        // expect(<>).toEqual(<>);
+        producto.clickBotonCrearClientes().then(
+            () => {
+                expect(producto.obtenerMensaje()).toEqual('Exitoso');
+            }
+        );
     });
 
-    it('Deberia listar productos', () => {
+    it('Deberia no ingresar cliente menor de edad', () => {
+        const NOMBRE_CLIENTE = 'Ramiro';
+        const CEDULA_CLIENTE = '1090565324';
+        const GENERO_CLIENTE = 'H';
+        const FECHA_NACIMIENTO_CLIENTE = '2009-05-02';
+
         page.navigateTo();
         navBar.clickBotonProductos();
-        producto.clickBotonListarProductos();
+        producto.clickBotonCrearClientes();
+        producto.ingresarNombre(NOMBRE_CLIENTE);
+        producto.ingresarCedula(CEDULA_CLIENTE);
+        producto.ingresarGenero(GENERO_CLIENTE);
+        producto.ingresarFechaNacimiento(FECHA_NACIMIENTO_CLIENTE);
 
-        expect(4).toBe(producto.contarProductos());
+        producto.clickBotonCrearClientes().then(
+            () => {
+                expect(producto.obtenerMensaje()).toEqual('El cliente es menor de edad');
+            }
+        );
+    });
+
+    it('Deberia eliminar cliente', () => {
+        const ID_CLIENTE = '1';
+
+        page.navigateTo();
+        navBar.clickBotonProductos();
+        producto.clickBotonEliminarClientes();
+        producto.ingresarNombre(ID_CLIENTE);
+
+        producto.clickBotonEliminarClientes().then(
+            () => {
+                expect(producto.obtenerMensaje()).toEqual('Exitoso');
+            }
+        );
+    });
+
+    it('Deberia no eliminar cliente que no existe', () => {
+        const ID_CLIENTE = '6';
+
+        page.navigateTo();
+        navBar.clickBotonProductos();
+        producto.clickBotonEliminarClientes();
+        producto.ingresarNombre(ID_CLIENTE);
+
+        producto.clickBotonEliminarClientes().then(
+            () => {
+                expect(producto.obtenerMensaje()).toEqual('El cliente no existe en el sistema');
+            }
+        );
+    });    
+
+    it('Deberia listar clientes', () => {
+        page.navigateTo();
+        navBar.clickBotonProductos();
+        producto.clickBotonListarClientes();
+
+
+        expect(0).toBe(producto.contarProductos());
     });
 });

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from '@core/modelo/menu-item';
+import { ProductoService } from '@producto/shared/service/producto.service';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { MenuItem } from '@core/modelo/menu-item';
 })
 export class AppComponent {
   title = 'app-base';
+
   public companies: MenuItem[] = [
     { url: '/home', nombre: 'home' },
     { url: '/producto', nombre: 'producto' }
