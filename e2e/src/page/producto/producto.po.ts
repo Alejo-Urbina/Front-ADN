@@ -1,49 +1,64 @@
 import { by, element } from 'protractor';
 
 export class ProductoPage {
-    private linkCrearCliente = element(by.id('linkCrearCliente'));
-    private linkListarClientes = element(by.id('linkListarCliente'));
-    private linkElimibarClientes = element(by.id('linkEliminarCliente'));
+    private linkCrearCliente = element(by.id('linkCrearProducto'));
+    private linkListarClientes = element(by.id('linkListarProducto'));
+    private linkEliminarClientes = element(by.id('linkBorrarProducto'));
+    private crearCliente = element(by.id('Crear'));
+    private eliminarCliente = element(by.id('Eliminar'));
     private inputNombreCliente = element(by.id('nombreCliente'));
     private inputCedulaCliente = element(by.id('cedulaCliente'));
-    private inputGeneroCliente = element(by.id('generoCliente'));
-    private inputFechaNacimientoCliente = element(by.id('fechaNaciemientoCliente'));
+    private inputGeneroCliente = element(by.id('generoCliente'));    
+    private inputFechaNacimientoCliente = element(by.id('fechaNacimiento'));
+    private inputIdCliente = element(by.id('idCliente'));
     private listaClientes = element.all(by.css('ul.productos li'));
-    private mensajeToast = element(by.css('.toast-message'));
+    private mensaje = element(by.id("estado"));
 
-    async clickBotonCrearClientes() {
-        await this.linkCrearCliente.click();
+    clickBotonComponenteCrearClientes() {
+        return this.linkCrearCliente.click();
     }
 
-    async clickBotonListarClientes() {
-        await this.linkListarClientes.click();
+    clickBotonComponenteListarClientes() {
+        return this.linkListarClientes.click();
     }
 
-    async clickBotonEliminarClientes() {
-        await this.linkElimibarClientes.click();
+    clickBotonComponenteEliminarClientes() {
+        return this.linkEliminarClientes.click();
     }
 
-    async ingresarNombre(nombreCliente) {
-        await this.inputNombreCliente.sendKeys(nombreCliente);
+    clickBotonCrearClientes() {
+        return this.crearCliente.click();
     }
 
-    async ingresarCedula(cedulaCliente) {
-        await this.inputCedulaCliente.sendKeys(cedulaCliente);
+    clickBotonEliminarClientes() {
+        return this.eliminarCliente.click();
     }
 
-    async ingresarGenero(generoCliente) {
-        await this.inputGeneroCliente.sendKeys(generoCliente);
+    ingresarNombre(nombreCliente) {
+        return this.inputNombreCliente.sendKeys(nombreCliente);
     }
 
-    async ingresarFechaNacimiento(fechaNacimientoProducto) {
-        await this.inputFechaNacimientoCliente.sendKeys(fechaNacimientoProducto);
+    ingresarCedula(cedulaCliente) {
+        return this.inputCedulaCliente.sendKeys(cedulaCliente);
     }
 
-    async contarProductos() {
+    ingresarGenero(generoCliente) {
+        return this.inputGeneroCliente.sendKeys(generoCliente);
+    }
+
+    ingresarFechaNacimiento(fechaNacimientoProducto) {
+        return this.inputFechaNacimientoCliente.sendKeys(fechaNacimientoProducto);
+    }
+
+    ingresarId(idCliente){
+        return this.inputIdCliente.sendKeys(idCliente);
+    }
+
+    contarProductos() {
         return this.listaClientes.count();
     }
 
-    async obtenerMensaje() {
-        return this.mensajeToast;
+    obtenerMensaje() {
+        return this.mensaje.getText();
     }
 }

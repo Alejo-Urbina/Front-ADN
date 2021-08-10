@@ -4,9 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Injectable } from "@angular/core";
 import { ToastrService } from 'ngx-toastr';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html',
@@ -14,26 +12,34 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
-  
-  
+  estado: string;
+
+
   constructor(protected productoService: ProductoService, private toast: ToastrService) { }
 
   ngOnInit() {
     this.construirFormularioProducto();
   }
 
-  cerar() {    
+  cerar() {
     this.productoService.guardarCliente(this.productoForm.value).subscribe(
-      data => {this.showSucces('Exitoso'); data.valueOf},
-      error => this.showError(error.error.mensaje)               
-      );   
+      data => {
+        this.showSucces('Exitoso'); 
+        data;
+        this.estado = "Exitoso";
+      },
+      error => {
+        this.showError(error.error.mensaje);
+        this.estado = error.error.mensaje; 
+      }
+    );
   }
 
-  showSucces(titulo){
+  showSucces(titulo) {
     this.toast.success(titulo);
   }
 
-  showError(texto){
+  showError(texto) {
     this.toast.error(texto);
   }
 

@@ -19,6 +19,7 @@ export class BorrarProductoComponent implements OnInit {
 
   productForm: FormGroup;
   public listaProductos: Observable<Cliente[]>;
+  estado: string;
 
   constructor(protected productoService: ProductoService, private toast: ToastrService) { }
 
@@ -27,24 +28,31 @@ export class BorrarProductoComponent implements OnInit {
     this.listaProductos = this.productoService.consultar();
   }
 
-  salida() {   
-      this.productoService.eliminar(this.productForm.value.id).subscribe(
-        data => this.showSucces(data,'Exitoso'),
-        error => this.showError(error.error.mensaje)                 
-        );                  
+  salida() {
+    this.productoService.eliminar(this.productForm.value.id).subscribe(
+      data => {
+        this.showSucces(data, 'Exitoso')
+        this.estado = "Exitoso";
+      },
+      error => {
+        this.showError(error.error.mensaje)
+        this.estado = error.error.mensaje;
+      }
+    );
   }
 
-  showSucces(texto,titulo){
-    this.toast.success(texto,titulo);
+  showSucces(texto, titulo) {
+    this.toast.success(texto, titulo);
   }
 
-  showError(texto){
+  showError(texto) {
     this.toast.error(texto);
   }
 
   private construirFormularioProducto() {
     this.productForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),});
+      id: new FormControl('', [Validators.required]),
+    });
   }
 
 }
